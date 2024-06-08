@@ -1,0 +1,23 @@
+services:
+  service:
+    restart: always
+    build: .
+    environment:
+      MONGODB_URI: mongodb://localhost:27017/test
+      MONGODB_DATABASE: rent_objects
+    depends_on:
+      - mongo
+    network_mode: "host"
+
+  mongo:
+    image: mongo
+    restart: on-failure
+    volumes:
+      - mongo-data:/data/db
+    network_mode: "host"
+
+volumes:
+  mongo-data:
+
+
+
